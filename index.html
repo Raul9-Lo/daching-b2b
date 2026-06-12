@@ -7,290 +7,275 @@
 <title>DACHENG — AIoT Smart Lighting</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;color:#3a3d44;line-height:1.7;background:#fff;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;color:#fff;line-height:1.7;background:var(--bg);-webkit-font-smoothing:antialiased}
 :root{
-  --g:#689030;--gd:#4A7020;--gl:#e8f0d8;
-  --b:#2C2416;--b2:#3D3220;--b3:#4A3D28;
-  --gold:#997147;--gold-light:#b8956e;
-  --w90:rgba(255,255,255,.9);--w60:rgba(255,255,255,.6);--w40:rgba(255,255,255,.4);
+  --bg:#0B0E21;--card:#141834;--border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
+  --accent:#00D4AA;--accent-dim:rgba(0,212,170,.12);
+  --green:#10B981;--red:#EF4444;
+  --t2:#8899AA;--t3:rgba(255,255,255,.4);
+  --font-mono:'SF Mono','Fira Code','Cascadia Code',monospace;
 }
 
-/* Navbar */
-.nb{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;transition:all .3s}
-.nb.scrolled{background:rgba(44,36,22,.97);backdrop-filter:blur(18px);padding:10px 40px;box-shadow:0 1px 0 rgba(255,255,255,.05),0 8px 32px rgba(0,0,0,.4)}
-.nb-logo{text-decoration:none;display:flex;align-items:center}
-.nb-logo img{height:30px}
-.nb-right{display:flex;align-items:center;gap:20px}
-.nb-links{display:flex;list-style:none;gap:20px;align-items:center}
-.nb-links a{color:var(--w90);text-decoration:none;font-size:.82em;font-weight:500;transition:color .2s;white-space:nowrap;letter-spacing:.3px}
-.nb-links a:hover{color:var(--gold-light)}
-.nb-cta{background:var(--g)!important;color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important}
-.nb-cta:hover{background:var(--gd)!important;color:#fff!important}
-
+/* Navbar - Logo left, Nav center */
+.nb{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(11,14,33,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nb-logo{display:flex;align-items:center;text-decoration:none}
+.nb-logo img{height:28px}
+.nb-nav{display:flex;list-style:none;gap:28px;position:absolute;left:50%;transform:translateX(-50%)}
+.nb-nav a{color:var(--t2);text-decoration:none;font-size:.82em;font-weight:500;transition:color .2s;letter-spacing:.3px}
+.nb-nav a:hover{color:#fff}
+.nb-right{display:flex;align-items:center}
+.nb-cta{background:var(--accent);color:#000!important;padding:7px 18px;border-radius:8px;font-weight:600!important;font-size:.82em!important;text-decoration:none;transition:all .2s}
+.nb-cta:hover{box-shadow:0 0 20px rgba(0,212,170,.3);transform:translateY(-1px)}
 .nb-tg{display:none;background:none;border:none;cursor:pointer;padding:6px}
 .nb-tg span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;transition:.28s;border-radius:2px}
-@media(max-width:900px){
-.nb-links{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--b);flex-direction:column;padding:88px 32px;gap:18px;transition:right .3s;z-index:999;overflow-y:auto}
-.nb-links.active{right:0}
-.nb-tg{display:block;position:relative;z-index:1001}
-.nb-tg.active span:nth-child(1){transform:rotate(45deg)translate(5px,5px)}
-.nb-tg.active span:nth-child(2){opacity:0}
-.nb-tg.active span:nth-child(3){transform:rotate(-45deg)translate(5px,-5px)}
-.nb{padding:14px 20px}.nb.scrolled{padding:10px 20px}
+@media(max-width:960px){
+.nb-nav{display:none}
+.nb-tg{display:block}
 }
 
 /* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(165deg,var(--b) 0%,var(--b2) 35%,var(--b3) 65%,var(--b) 100%);position:relative;overflow:hidden;text-align:center;color:#fff;padding:70px 20px 50px}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 30% 30%,rgba(104,144,48,.15),transparent 55%),radial-gradient(ellipse 50% 40% at 70% 65%,rgba(153,113,71,.08),transparent 55%);animation:drift 12s ease-in-out infinite}
-@keyframes drift{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(153,113,71,.3),transparent)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(0,212,170,.06),transparent),var(--bg);position:relative;text-align:center;padding:80px 20px 60px}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,170,.2),transparent)}
 .hero-c{position:relative;z-index:2;max-width:840px}
-.hero-logo{display:inline-block;background:rgba(104,144,48,.08);border:1px solid rgba(104,144,48,.18);border-radius:16px;padding:16px 32px;margin-bottom:36px;backdrop-filter:blur(12px);animation:fu .6s ease}
-.hero-logo img{height:42px}
-.hero-badge{display:inline-block;padding:5px 18px;border:1px solid rgba(153,113,71,.35);border-radius:50px;font-size:.78em;color:var(--gold-light);margin-bottom:26px;animation:fu .6s .06s ease both;letter-spacing:.6px}
-.hero h1{font-size:clamp(1.9em,4.5vw,2.8em);font-weight:800;line-height:1.16;margin-bottom:12px;letter-spacing:-.4px;animation:fu .6s .12s ease both}
-.hero h1 .accent{color:var(--gold-light)}
-.hero .h-sub{display:block;font-size:.32em;font-weight:400;color:var(--w40);letter-spacing:1.5px;margin-top:8px}
-.hero p{font-size:1em;color:var(--w60);max-width:600px;margin:0 auto 32px;animation:fu .6s .2s ease both}
+.hero-logo{display:inline-block;background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.12);border-radius:14px;padding:16px 32px;margin-bottom:36px;backdrop-filter:blur(12px);animation:fu .6s ease}
+.hero-logo img{height:40px}
+.hero-badge{display:inline-block;padding:5px 18px;border:1px solid rgba(0,212,170,.25);border-radius:50px;font-size:.78em;color:var(--accent);margin-bottom:28px;animation:fu .6s .06s ease both;letter-spacing:.6px}
+.hero h1{font-size:clamp(2em,4.5vw,2.8em);font-weight:800;line-height:1.14;margin-bottom:16px;letter-spacing:-.4px;animation:fu .6s .12s ease both}
+.hero h1 .accent{color:var(--accent)}
+.hero p{font-size:1em;color:var(--t2);max-width:600px;margin:0 auto 32px;animation:fu .6s .2s ease both}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fu .6s .28s ease both}
-.hero-feats{display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap;animation:fu .6s .36s ease both}
-.hero-feat{display:flex;align-items:center;gap:6px;color:var(--w40);font-size:.78em;padding:5px 14px;border-radius:6px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06)}
-.hero-feat:hover{color:var(--w90);border-color:rgba(153,113,71,.25)}
+.hero-feats{display:flex;gap:10px;justify-content:center;margin-top:42px;flex-wrap:wrap;animation:fu .6s .36s ease both}
+.hero-feat{display:flex;align-items:center;gap:6px;color:var(--t2);font-size:.78em;padding:6px 14px;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.hero-feat:hover{color:#fff;border-color:rgba(0,212,170,.2)}
 @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .btn{display:inline-flex;align-items:center;gap:7px;padding:13px 30px;border-radius:10px;font-weight:600;font-size:.9em;text-decoration:none;border:none;transition:all .28s;letter-spacing:.3px;cursor:pointer}
-.btn-p{background:var(--g);color:#fff}
-.btn-p:hover{background:var(--gd);transform:translateY(-2px);box-shadow:0 10px 28px rgba(104,144,48,.3)}
-.btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.16)}
-.btn-o:hover{border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px)}
+.btn-p{background:var(--accent);color:#000}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,170,.25)}
+.btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.15)}
+.btn-o:hover{border-color:var(--accent);color:var(--accent)}
 
-/* Stats */
-.stats-bar{display:flex;justify-content:center;gap:clamp(20px,5vw,72px);padding:28px 20px;background:#fff;border-bottom:1px solid #edf0f2}
-.st{text-align:center}
-.st .sn{font-size:1.8em;font-weight:800;color:var(--b);line-height:1.1}
-.st .sl{font-size:.74em;color:#6b6f78;margin-top:1px;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+/* Metrics Row */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1100px;margin:0 auto;padding:32px 20px}
+@media(max-width:768px){.metrics{grid-template-columns:1fr 1fr}}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px;text-align:center;transition:all .3s}
+.metric:hover{border-color:var(--accent-dim);box-shadow:0 0 24px rgba(0,212,170,.04)}
+.metric .mn{font-family:var(--font-mono);font-size:2em;font-weight:800;color:var(--accent);line-height:1.1}
+.metric .ml{font-size:.76em;color:var(--t2);margin-top:4px;text-transform:uppercase;letter-spacing:.8px}
 
-/* Common */
-.sec{padding:60px 20px}
-.sec-num{text-align:center;font-size:2em;font-weight:800;color:var(--gl);letter-spacing:-1px;line-height:1;margin-bottom:-4px}
-.s-d .sec-num{color:rgba(104,144,48,.15)}
-.tag{display:block;text-align:center;color:var(--g);font-weight:600;font-size:.72em;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
-.stitle{font-size:clamp(1.4em,2.2vw,1.8em);text-align:center;color:var(--b);font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
-.ssub{text-align:center;color:#6b6f78;max-width:560px;margin:0 auto;font-size:.9em;line-height:1.6}
+/* Section Common */
+.sec{padding:64px 20px}
+.sec-num{font-family:var(--font-mono);text-align:center;font-size:1.8em;font-weight:800;color:rgba(0,212,170,.1);letter-spacing:2px;line-height:1;margin-bottom:-2px}
+.tag{display:block;text-align:center;color:var(--accent);font-weight:600;font-size:.72em;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+.stitle{font-size:clamp(1.4em,2.2vw,1.8em);text-align:center;font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
+.ssub{text-align:center;color:var(--t2);max-width:560px;margin:0 auto;font-size:.9em;line-height:1.6}
 .wrap{max-width:1100px;margin:0 auto}
-.s-w{background:#fff}
-.s-g{background:#f7f9fa}
-.s-d{background:linear-gradient(165deg,var(--b),var(--b2));color:#fff}
-.s-d .stitle,.s-d h3,.s-d h4{color:#fff}
-.s-d .ssub{color:var(--w60)}
-.s-d .tag{color:#80A040}
 
 /* Pillars */
-.p3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.p3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
 @media(max-width:768px){.p3{grid-template-columns:1fr}}
-.p3c{background:#fff;border-radius:14px;padding:28px 22px;text-align:center;border:1px solid #edf0f2;transition:all .3s;display:flex;flex-direction:column;align-items:center}
-.p3c:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(104,144,48,.08);border-color:rgba(104,144,48,.15)}
-.p3c .p3i{font-size:2em;margin-bottom:10px}
-.p3c h3{font-size:1.02em;color:var(--b);font-weight:700;margin-bottom:8px}
-.p3c p{color:#6b6f78;font-size:.82em;line-height:1.65}
+.p3c{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 22px;text-align:center;transition:all .3s;display:flex;flex-direction:column;align-items:center}
+.p3c:hover{border-color:var(--accent-dim);box-shadow:0 0 28px rgba(0,212,170,.04);transform:translateY(-2px)}
+.p3c .p3i{font-size:1.8em;margin-bottom:10px}
+.p3c h3{font-size:1em;font-weight:700;margin-bottom:8px}
+.p3c p{color:var(--t2);font-size:.82em;line-height:1.65}
 
 /* Product Access */
 .pa4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
 @media(max-width:900px){.pa4{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.pa4{grid-template-columns:1fr}}
-.pa4c{background:#fff;border-radius:12px;padding:24px 18px;text-align:center;border:1px solid #edf0f2;transition:all .3s;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;align-items:center;min-height:160px}
-.pa4c:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(104,144,48,.1);border-color:var(--g)}
-.pa4c .pai{font-size:1.8em;margin-bottom:10px}
-.pa4c h4{font-size:.9em;color:var(--b);font-weight:700;margin-bottom:6px}
-.pa4c p{color:#6b6f78;font-size:.74em;line-height:1.5;flex:1}
-.pa4c .paar{display:inline-block;margin-top:8px;font-size:.76em;color:var(--g);font-weight:600}
+.pa4c{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 18px;text-align:center;transition:all .3s;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;align-items:center;min-height:155px}
+.pa4c:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(0,212,170,.06);transform:translateY(-3px)}
+.pa4c .pai{font-size:1.7em;margin-bottom:10px}
+.pa4c h4{font-size:.9em;font-weight:700;margin-bottom:6px}
+.pa4c p{color:var(--t2);font-size:.74em;line-height:1.5;flex:1}
+.pa4c .paar{display:inline-block;margin-top:8px;font-size:.76em;color:var(--accent);font-weight:600}
 .pa4c:hover .paar{transform:translateX(3px)}
 
-/* Capabilities */
+/* Capabilities - left/right layout */
 .cap{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:34px;align-items:center}
 @media(max-width:768px){.cap{grid-template-columns:1fr}}
 .cap-l{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:480px){.cap-l{grid-template-columns:1fr}}
-.cf{display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(255,255,255,.045);border-radius:10px;border:1px solid rgba(255,255,255,.05)}
+.cf{display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(255,255,255,.025);border-radius:10px;border:1px solid var(--border)}
 .cf-i{font-size:1.1em;flex-shrink:0}
-.cf strong{display:block;color:#fff;font-size:.86em}
-.cf span{font-size:.74em;color:var(--w60)}
+.cf strong{display:block;font-size:.86em}
+.cf span{font-size:.74em;color:var(--t2)}
 .cap-r{display:flex;flex-direction:column;gap:12px}
-.bn{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:12px}
-.bn .bnn{font-size:1.7em;font-weight:800;color:var(--gold-light);line-height:1;min-width:80px}
-.bn .bnl{font-size:.8em;color:var(--w60);line-height:1.45}
+.bn{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.bn .bnn{font-family:var(--font-mono);font-size:1.7em;font-weight:800;color:var(--accent);line-height:1;min-width:80px}
+.bn .bnl{font-size:.8em;color:var(--t2);line-height:1.45}
 
-/* Tech */
-.tnav{display:flex;justify-content:center;gap:5px;margin-top:28px;flex-wrap:wrap}
-.tnb{padding:8px 16px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:transparent;color:var(--w60);cursor:pointer;font-size:.8em;transition:all .2s}
-.tnb:hover,.tnb.active{background:var(--g);color:#fff;border-color:var(--g)}
+/* Tech Tabs */
+.tnav{display:flex;justify-content:center;gap:6px;margin-top:28px;flex-wrap:wrap}
+.tnb{padding:8px 16px;border:1px solid var(--border2);border-radius:8px;background:transparent;color:var(--t2);cursor:pointer;font-size:.8em;transition:all .2s}
+.tnb:hover,.tnb.active{background:var(--accent);color:#000;border-color:var(--accent)}
 .tp{display:none;margin-top:28px}
 .tp.active{display:block}
-.t3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.t3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 @media(max-width:900px){.t3{grid-template-columns:1fr}}
-.tc{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:24px 20px;transition:all .3s}
-.tc:hover{background:rgba(255,255,255,.07);border-color:rgba(153,113,71,.2)}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 20px;transition:all .3s}
+.tc:hover{border-color:rgba(0,212,170,.15);box-shadow:0 0 24px rgba(0,212,170,.03)}
 .tc .ti{font-size:1.4em;margin-bottom:8px;display:block}
-.tc h3{font-size:.92em;font-weight:700;margin-bottom:4px;color:#fff}
-.tc p{color:var(--w60);font-size:.8em;line-height:1.55}
+.tc h3{font-size:.92em;font-weight:700;margin-bottom:4px}
+.tc p{color:var(--t2);font-size:.8em;line-height:1.55}
 
 .af{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.as{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:20px 16px;text-align:center;flex:1;min-width:135px;max-width:185px}
-.as:hover{border-color:var(--gold-light);transform:translateY(-2px)}
+.as{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 16px;text-align:center;flex:1;min-width:135px;max-width:185px;transition:all .3s}
+.as:hover{border-color:rgba(0,212,170,.15)}
 .as .si{font-size:1.4em;margin-bottom:6px;display:block}
-.as .stxt{font-weight:700;color:#fff;font-size:.83em;margin-bottom:2px}
-.as .sd{color:var(--w60);font-size:.72em;line-height:1.3}
+.as .stxt{font-weight:700;font-size:.83em;margin-bottom:2px}
+.as .sd{color:var(--t2);font-size:.72em;line-height:1.3}
 
 .ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.ac{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:20px 18px;text-align:center}
-.ac:hover{background:rgba(255,255,255,.07);border-color:rgba(153,113,71,.2)}
+.ac{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 18px;text-align:center;transition:all .3s}
+.ac:hover{border-color:rgba(0,212,170,.15)}
 .ac .ai{font-size:1.4em;margin-bottom:8px;display:block}
-.ac h3{font-size:.88em;margin-bottom:3px;font-weight:700;color:#fff}
-.ac p{color:var(--w60);font-size:.78em;line-height:1.5}
+.ac h3{font-size:.88em;font-weight:700;margin-bottom:3px}
+.ac p{color:var(--t2);font-size:.78em;line-height:1.5}
 
-.dg2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.dg2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:768px){.dg2{grid-template-columns:1fr}}
-.dc{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.05);border-radius:14px;padding:24px 20px;text-align:center}
-.dc:hover{border-color:rgba(153,113,71,.2)}
+.dc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-align:center;transition:all .3s}
+.dc:hover{border-color:rgba(0,212,170,.15)}
 .dc .dci{font-size:1.6em;margin-bottom:8px}
 .dc h3{font-size:.93em;font-weight:700;margin-bottom:4px}
-.dc p{color:var(--w60);font-size:.8em;line-height:1.5}
+.dc p{color:var(--t2);font-size:.8em;line-height:1.5}
 
 /* Products */
-.ptabs{display:flex;justify-content:center;gap:5px;margin-top:28px;flex-wrap:wrap}
-.ptab{padding:8px 15px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:.8em;font-weight:500;transition:all .2s;color:#3a3d44}
-.ptab:hover,.ptab.active{background:var(--g);color:#fff;border-color:var(--g)}
+.ptabs{display:flex;justify-content:center;gap:6px;margin-top:28px;flex-wrap:wrap}
+.ptab{padding:8px 15px;border:1px solid var(--border2);border-radius:8px;background:transparent;color:var(--t2);cursor:pointer;font-size:.8em;font-weight:500;transition:all .2s}
+.ptab:hover,.ptab.active{background:var(--accent);color:#000;border-color:var(--accent)}
 .pp{display:none;margin-top:26px}
 .pp.active{display:block}
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
-.pc{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 10px rgba(0,0,0,.01);border:1px solid rgba(0,0,0,.03);transition:all .3s}
-.pc:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.04);border-color:rgba(104,144,48,.12)}
-.ph{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f0f2f5}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s}
+.pc:hover{border-color:rgba(0,212,170,.15);transform:translateY(-2px)}
+.ph{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
 .ph .phi{font-size:1.2em;flex-shrink:0}
-.ph h4{font-size:.86em;color:var(--b);font-weight:700}
-.ph .phe{font-size:.7em;color:#6b6f78;display:block}
+.ph h4{font-size:.86em;font-weight:700}
+.ph .phe{font-size:.7em;color:var(--t2);display:block}
 .pb{padding:12px 16px 16px}
 .ps{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-bottom:10px}
-.ps .psi{font-size:.73em;color:#3a3d44}
-.ps .psi strong{display:block;font-size:.66em;text-transform:uppercase;letter-spacing:.5px;color:#6b6f78}
-.pd{font-size:.74em;color:#6b6f78;margin-bottom:8px;line-height:1.45}
-.tg{display:inline-block;padding:2px 8px;background:var(--gl);border-radius:20px;font-size:.68em;color:#3A5A1A;font-weight:500;margin:2px 2px}
-.tgg{background:#d8e8c8;color:#3A5A1A}
+.ps .psi{font-size:.73em}
+.ps .psi strong{display:block;font-size:.66em;text-transform:uppercase;letter-spacing:.5px;color:var(--t2)}
+.pd{font-size:.74em;color:var(--t2);margin-bottom:8px;line-height:1.45}
+.tg{display:inline-block;padding:2px 8px;background:rgba(0,212,170,.1);border-radius:20px;font-size:.68em;color:var(--accent);font-weight:500;margin:2px 2px}
+.tgg{background:rgba(16,185,129,.1);color:var(--green)}
 
 .sl2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
 @media(max-width:768px){.sl2{grid-template-columns:1fr}}
-.slt h3{font-size:1.1em;font-weight:700;margin-bottom:6px;color:var(--gold-light)}
-.slt p{color:var(--w60);font-size:.84em;line-height:1.55}
+.slt h3{font-size:1.1em;font-weight:700;margin-bottom:6px;color:var(--accent)}
+.slt p{color:var(--t2);font-size:.84em;line-height:1.55}
 .sl-fe{list-style:none;margin-top:10px}
-.sl-fe li{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:flex-start;gap:8px;color:var(--w90);font-size:.8em;line-height:1.4}
-.sl-fe li::before{content:'◇';color:var(--g);flex-shrink:0}
-.slb{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.sl-fe li{padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;font-size:.8em;line-height:1.4}
+.sl-fe li::before{content:'◇';color:var(--accent);flex-shrink:0}
+.slb{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .slb .si{font-size:2.6em;margin-bottom:8px}
-.slb .sn{font-size:1.7em;font-weight:800;color:var(--gold-light)}
-.slb .sl{color:var(--w60);font-size:.78em;margin-top:2px}
+.slb .sn{font-family:var(--font-mono);font-size:1.7em;font-weight:800;color:var(--accent)}
+.slb .sl{color:var(--t2);font-size:.78em;margin-top:2px}
 
 .he4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:768px){.he4{grid-template-columns:1fr 1fr}}
-.hec{background:#fff;border-radius:12px;padding:20px 12px;text-align:center;border:1px solid #e8ecf1}
-.hec:hover{border-color:var(--g);box-shadow:0 3px 12px rgba(104,144,48,.04)}
+.hec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 12px;text-align:center;transition:all .3s}
+.hec:hover{border-color:rgba(0,212,170,.15)}
 .hec .hi{font-size:1.3em;margin-bottom:4px}
-.hec .hn{font-size:1.4em;font-weight:800;color:var(--g)}
-.hec .hl{font-size:.74em;color:#6b6f78;line-height:1.35}
-.hev{background:#fff;border-radius:12px;padding:20px;border:1px solid #e8ecf1;margin-top:16px}
-.hev h3{text-align:center;color:var(--b);font-weight:700;margin-bottom:10px;font-size:.95em}
+.hec .hn{font-family:var(--font-mono);font-size:1.4em;font-weight:800;color:var(--accent)}
+.hec .hl{font-size:.74em;color:var(--t2);line-height:1.35}
+.hev{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:16px}
+.hev h3{text-align:center;font-weight:700;margin-bottom:10px;font-size:.95em}
 .hevs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px}
-.hevs .hsi{padding:8px 10px;background:var(--gl);border-radius:8px;font-size:.78em}
+.hevs .hsi{padding:8px 10px;background:rgba(0,212,170,.06);border-radius:8px;font-size:.78em}
 
 .dlf{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.dlc{flex:1;min-width:140px;max-width:185px;background:#fff;border-radius:12px;padding:18px 12px;text-align:center;border:1px solid #e8ecf1}
-.dlc:hover{border-color:var(--g);transform:translateY(-2px)}
+.dlc{flex:1;min-width:140px;max-width:185px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 12px;text-align:center;transition:all .3s}
+.dlc:hover{border-color:rgba(0,212,170,.15);transform:translateY(-2px)}
 .dlc .di{font-size:1.4em;margin-bottom:4px}
-.dlc h4{font-size:.81em;color:var(--b);font-weight:700;margin-bottom:2px}
-.dlc p{font-size:.72em;color:#6b6f78;line-height:1.35}
+.dlc h4{font-size:.81em;font-weight:700;margin-bottom:2px}
+.dlc p{font-size:.72em;color:var(--t2);line-height:1.35}
 
 .ag2{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
-.acc{background:#fff;border-radius:10px;padding:16px 12px;text-align:center;border:1px solid rgba(0,0,0,.03);transition:all .25s;display:flex;flex-direction:column;align-items:center;min-height:115px}
-.acc:hover{transform:translateY(-2px);box-shadow:0 3px 14px rgba(104,144,48,.04);border-color:rgba(104,144,48,.1)}
+.acc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 12px;text-align:center;transition:all .25s;display:flex;flex-direction:column;align-items:center;min-height:115px}
+.acc:hover{border-color:rgba(0,212,170,.15);transform:translateY(-2px)}
 .acc .ai{font-size:1.4em;margin-bottom:6px}
-.acc h4{font-size:.81em;color:var(--b);font-weight:700;margin-bottom:2px}
-.acc p{color:#6b6f78;font-size:.72em;line-height:1.35}
+.acc h4{font-size:.81em;font-weight:700;margin-bottom:2px}
+.acc p{color:var(--t2);font-size:.72em;line-height:1.35}
 
 .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:30px}
-.sc{background:#fff;border-radius:12px;padding:22px 18px;border:1px solid rgba(0,0,0,.03);transition:all .3s}
-.sc:hover{transform:translateY(-3px);box-shadow:0 5px 22px rgba(104,144,48,.05);border-color:rgba(104,144,48,.12)}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 18px;transition:all .3s}
+.sc:hover{border-color:rgba(0,212,170,.15);transform:translateY(-2px)}
 .sc .sci{font-size:1.5em;margin-bottom:8px;display:block}
-.sc h3{font-size:.92em;color:var(--b);font-weight:700;margin-bottom:6px}
-.sc p{color:#3a3d44;font-size:.8em;line-height:1.5;margin-bottom:6px}
+.sc h3{font-size:.92em;font-weight:700;margin-bottom:6px}
+.sc p{color:var(--t2);font-size:.8em;line-height:1.5;margin-bottom:6px}
 .sc ul{list-style:none}
-.sc ul li{font-size:.75em;color:#6b6f78;padding:2px 0 2px 14px;position:relative}
-.sc ul li::before{content:'•';position:absolute;left:0;color:var(--g)}
+.sc ul li{font-size:.75em;color:var(--t2);padding:2px 0 2px 14px;position:relative}
+.sc ul li::before{content:'•';position:absolute;left:0;color:var(--accent)}
 
 .ab{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:32px;align-items:center}
 @media(max-width:768px){.ab{grid-template-columns:1fr}}
-.abt h3{font-size:1.1em;font-weight:700;color:var(--b);margin-bottom:8px}
-.abt p{color:#3a3d44;line-height:1.7;margin-bottom:6px;font-size:.86em}
-.abt .quote{display:block;font-size:.82em;color:var(--g);font-style:italic;margin-top:6px;padding-left:12px;border-left:3px solid var(--gold-light)}
+.abt h3{font-size:1.1em;font-weight:700;margin-bottom:8px}
+.abt p{color:var(--t2);line-height:1.7;margin-bottom:6px;font-size:.86em}
+.abt .quote{display:block;font-size:.82em;color:var(--accent);font-style:italic;margin-top:6px;padding-left:12px;border-left:3px solid var(--accent)}
 .abh{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.abh .hl{background:var(--gl);border-radius:9px;padding:12px;text-align:center}
-.abh .hl .hln{font-size:1.2em;font-weight:800;color:var(--g)}
-.abh .hl .hll{font-size:.72em;color:#3A5A1A;font-weight:500}
-.abv{background:linear-gradient(145deg,#e0e8d8,#cdd5c4,#d8e0d0);border-radius:16px;padding:32px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px}
+.abh .hl{background:rgba(0,212,170,.06);border-radius:9px;padding:12px;text-align:center}
+.abh .hl .hln{font-family:var(--font-mono);font-size:1.2em;font-weight:800;color:var(--accent)}
+.abh .hl .hll{font-size:.72em;color:var(--t2);font-weight:500}
+.abv{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:220px}
 .abv .avi{font-size:2.4em;margin-bottom:8px}
-.abv p{color:#6b6f78;font-size:.8em;line-height:1.6}
+.abv p{color:var(--t2);font-size:.8em;line-height:1.6}
 
 .ctw{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:32px;align-items:start}
 @media(max-width:768px){.ctw{grid-template-columns:1fr}}
-.cti h3{font-size:1.14em;margin-bottom:12px;color:#fff}
-.cti p{color:var(--w60);margin-bottom:14px;line-height:1.55;font-size:.85em}
+.cti h3{font-size:1.14em;margin-bottom:12px}
+.cti p{color:var(--t2);margin-bottom:14px;line-height:1.55;font-size:.85em}
 .cr{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px}
 .cr .cri{font-size:.92em;flex-shrink:0}
-.cr span{color:var(--w60);font-size:.82em;line-height:1.4}
-.ctf{background:#fff;border-radius:14px;padding:26px;color:#3a3d44}
-.ctf h3{color:var(--b);font-size:1em;margin-bottom:14px;text-align:center;font-weight:700}
+.cr span{color:var(--t2);font-size:.82em;line-height:1.4}
+.ctf{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;color:#fff}
+.ctf h3{font-size:1em;margin-bottom:14px;text-align:center;font-weight:700}
 .fg{margin-bottom:11px}
-.fg label{display:block;font-size:.74em;font-weight:600;color:#555;margin-bottom:2px}
-.fg input,.fg textarea,.fg select{width:100%;padding:9px 11px;border:1px solid #ddd;border-radius:7px;font-size:.84em;font-family:inherit;background:#f8fafb;color:#333;transition:all .2s}
-.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--g);background:#fff;box-shadow:0 0 0 3px rgba(104,144,48,.04)}
+.fg label{display:block;font-size:.74em;font-weight:600;color:var(--t2);margin-bottom:2px}
+.fg input,.fg textarea,.fg select{width:100%;padding:9px 11px;border:1px solid var(--border2);border-radius:7px;font-size:.84em;font-family:inherit;background:rgba(255,255,255,.04);color:#fff;transition:all .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.06);box-shadow:0 0 0 3px rgba(0,212,170,.08)}
 .fg textarea{min-height:85px;resize:vertical}
-.fb{width:100%;padding:11px;background:var(--b);color:#fff;border:none;border-radius:7px;font-size:.88em;font-weight:600;cursor:pointer;transition:all .25s}
-.fb:hover{background:var(--g)}
+.fb{width:100%;padding:11px;background:var(--accent);color:#000;border:none;border-radius:7px;font-size:.88em;font-weight:600;cursor:pointer;transition:all .25s}
+.fb:hover{box-shadow:0 0 20px rgba(0,212,170,.2)}
 
-footer{background:#1A1510;color:var(--w60);padding:36px 20px 18px;text-align:center}
+footer{background:#080A18;color:var(--t2);padding:36px 20px 18px;text-align:center;border-top:1px solid var(--border)}
 footer .flm{margin-bottom:8px}
 footer .flm img{height:25px;margin:0 auto}
 footer p{font-size:.76em;margin-bottom:1px}
-footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);font-size:.7em;color:rgba(255,255,255,.3)}
+footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-size:.7em;color:var(--t3)}
 
 .reveal{opacity:0;transform:translateY(24px);transition:all .55s cubic-bezier(.22,.61,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-@media(max-width:480px){.hero-logo{padding:12px 16px}.hero-logo img{height:30px}.sec{padding:42px 12px}.as{max-width:100%}}
+@media(max-width:480px){.hero-logo{padding:12px 16px}.hero-logo img{height:30px}.sec{padding:42px 12px}}
 </style>
 </head>
 <body>
 
 <nav class="nb" id="nb">
 <a href="#" class="nb-logo"><img src="logo-white.png" alt="DACHENG"></a>
-<div class="nb-right">
-<ul class="nb-links" id="nbl">
-<li><a href="#home">Home</a></li><li><a href="#products">Products</a></li><li><a href="#tech">Technology</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#about">About</a></li><li><a href="#contact" class="nb-cta">Contact</a></li>
+<ul class="nb-nav">
+<li><a href="#home">Home</a></li><li><a href="#products">Products</a></li><li><a href="#tech">Technology</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#about">About</a></li>
 </ul>
-
+<div class="nb-right">
+<a href="#contact" class="nb-cta">Contact</a>
 <button class="nb-tg" id="nbtg"><span></span><span></span><span></span></button>
 </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero reveal" id="home">
 <div class="hero-c">
 <div class="hero-logo"><img src="logo-white.png" alt="DACHENG"></div>
 <div class="hero-badge">IoT + Radar Sensing · AIoT Smart Lighting</div>
-<h1>Smart Lighting <span class="accent">Redefines What Light Can Do</span></h1>
-<p Self-developed DC System — AIoT-powered active intelligent lighting. Luminaires perceive scenes and auto-match professional lighting.></p>
+<h1>Smart Lighting <span class="accent">Redefines</span><br>What Light Can Do</h1>
+<p>Self-developed DC System — AIoT-powered active intelligent lighting. Luminaires perceive scenes and auto-match professional lighting.</p>
 <div class="hero-btns">
-<a href="#products" class="btn btn-p" Explore Products →></a>
-<a href="#tech" class="btn btn-o" Technology></a>
-<a href="#contact" class="btn btn-o" Request Demo></a>
+<a href="#products" class="btn btn-p">Explore Products →</a>
+<a href="#tech" class="btn btn-o">Technology</a>
+<a href="#contact" class="btn btn-o">Request Demo</a>
 </div>
 <div class="hero-feats">
 <div class="hero-feat"><span>📡</span> 5.8GHz Radar</div>
@@ -301,51 +286,48 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 </div>
 </section>
 
-<div class="stats-bar reveal">
-<div class="st"><div class="sn">10+</div><div class="sl">Years Experience</div></div>
-<div class="st"><div class="sn">Ph.D</div><div class="sl">CSAIL Lab Lead</div></div>
-<div class="st"><div class="sn">80-96%</div><div class="sl">Energy Saving</div></div>
-<div class="st"><div class="sn">50,000h</div><div class="sl">Lifespan</div></div>
+<div class="metrics reveal">
+<div class="metric"><div class="mn">10+</div><div class="ml">Years Experience</div></div>
+<div class="metric"><div class="mn">Ph.D</div><div class="ml">CSAIL Lab Lead</div></div>
+<div class="metric"><div class="mn">80-96%</div><div class="ml">Energy Saving</div></div>
+<div class="metric"><div class="mn">50,000h</div><div class="ml">Lifespan</div></div>
 </div>
 
-<!-- 01 -->
-<section class="sec s-w reveal">
+<section class="sec reveal">
 <div class="wrap">
 <div class="sec-num">01</div>
-<span class="tag" What We Do></span>
-<h2 class="stitle" AIoT Smart Lighting — One-Stop Solution></h2>
-<p class="ssub" From smart hardware to cloud platform, from single lamp to cluster — the DC System builds a complete smart lighting closed loop.></p>
+<span class="tag">What We Do</span>
+<h2 class="stitle">AIoT Smart Lighting — One-Stop Solution</h2>
+<p class="ssub">From smart hardware to cloud platform, single lamp to cluster — DC System builds a complete smart lighting closed loop.</p>
 <div class="p3">
-<div class="p3c"><span class="p3i">💡</span><h3 Smart Hardware></h3><p Full-range luminaires: High Bay, T8 Tube, Tri-Proof, Panel, Linear, Downlight, Ceiling. Built-in radar/IR sensors, plug & play.></p></div>
-<div class="p3c"><span class="p3i">🧠</span><h3 AIoT Platform></h3><p Self-developed DC System: decentralized Mesh, hybrid protocol, AI self-learning. SaaS cloud with MQTT standard interface.></p></div>
-<div class="p3c"><span class="p3i">⚡</span><h3 Energy Solution></h3><p On-demand lighting: presence-lit, absence-dim. Stepless 10-100% dimming. 80-96% vs fluorescent, +60-75% vs radar lamps.></p></div>
+<div class="p3c"><span class="p3i">💡</span><h3>Smart Hardware</h3><p>Full-range luminaires: High Bay, T8 Tube, Tri-Proof, Panel, Linear, Downlight, Ceiling. Built-in radar/IR sensors, plug & play.</p></div>
+<div class="p3c"><span class="p3i">🧠</span><h3>AIoT Platform</h3><p>Self-developed DC System: decentralized Mesh, hybrid protocol, AI self-learning. SaaS cloud with MQTT standard interface.</p></div>
+<div class="p3c"><span class="p3i">⚡</span><h3>Energy Solution</h3><p>On-demand lighting: presence-lit, absence-dim. Stepless 10-100% dimming. 80-96% vs fluorescent, +60-75% vs radar lamps.</p></div>
 </div>
 </div>
 </section>
 
-<!-- 02 -->
-<section class="sec s-g reveal">
+<section class="sec reveal">
 <div class="wrap">
 <div class="sec-num">02</div>
-<span class="tag" Product Lines></span>
-<h2 class="stitle" Four Major Product Series></h2>
-<p class="ssub" Complete commercial lighting coverage — from AI-driven group control to self-learning, all in one stop.></p>
+<span class="tag">Product Lines</span>
+<h2 class="stitle">Four Major Product Series</h2>
+<p class="ssub">Complete commercial lighting coverage — from AI-driven group control to self-learning, all in one stop.</p>
 <div class="pa4">
-<a href="#pt-group" class="pa4c" onclick="switchProdTab('pt-group')"><span class="pai">🎛️</span><h4 AI-Driven Group Control></h4><p Industrial · T8 · Tri-Proof · Panel · Linear · Downlight · Ceiling></p><span class="paar" Learn More →></span></a>
-<a href="#pt-ai" class="pa4c" onclick="switchProdTab('pt-ai')"><span class="pai">🤖</span><h4 AI Self-Learning Lamps></h4><p Zero commissioning · Self-learns paths · Predictive lighting · 93.7% accuracy></p><span class="paar" Learn More →></span></a>
-<a href="#pt-hieff" class="pa4c" onclick="switchProdTab('pt-hieff')"><span class="pai">⚡</span><h4 High-Efficiency LED></h4><p 235lm/W · <2% decay/yr · 50,000h · 5-year maintenance-free></p><span class="paar" Learn More →></span></a>
-<a href="#pt-daylight" class="pa4c" onclick="switchProdTab('pt-daylight')"><span class="pai">☀️</span><h4 Daylight Dimming></h4><p Auto-adjusts to natural light · Seamless dimming · True >50% savings></p><span class="paar" Learn More →></span></a>
+<a href="#pt-group" class="pa4c" onclick="switchProdTab('pt-group')"><span class="pai">🎛️</span><h4>AI-Driven Group Control</h4><p>Industrial · T8 · Tri-Proof · Panel · Linear · Downlight · Ceiling</p><span class="paar">Learn More →</span></a>
+<a href="#pt-ai" class="pa4c" onclick="switchProdTab('pt-ai')"><span class="pai">🤖</span><h4>AI Self-Learning Lamps</h4><p>Zero commissioning · Self-learns paths · Predictive lighting · 93.7% accuracy</p><span class="paar">Learn More →</span></a>
+<a href="#pt-hieff" class="pa4c" onclick="switchProdTab('pt-hieff')"><span class="pai">⚡</span><h4>High-Efficiency LED</h4><p>235lm/W · <2% decay/yr · 50,000h · 5-year maintenance-free</p><span class="paar">Learn More →</span></a>
+<a href="#pt-daylight" class="pa4c" onclick="switchProdTab('pt-daylight')"><span class="pai">☀️</span><h4>Daylight Dimming</h4><p>Auto-adjusts to natural light · Seamless dimming · True >50% savings</p><span class="paar">Learn More →</span></a>
 </div>
 </div>
 </section>
 
-<!-- 03 -->
-<section class="sec s-d reveal">
+<section class="sec reveal">
 <div class="wrap">
 <div class="sec-num">03</div>
 <span class="tag">Why DACHENG</span>
-<h2 class="stitle" Technology-Driven · Data-Proven></h2>
-<p class="ssub" Ph.D research team + self-developed DC System + full-stack proprietary technology.></p>
+<h2 class="stitle">Technology-Driven · Data-Proven</h2>
+<p class="ssub">Ph.D research team + self-developed DC System + full-stack proprietary technology.</p>
 <div class="cap">
 <div class="cap-l">
 <div class="cf"><span class="cf-i">🎓</span><div><strong>Ph.D Research Team</strong><span>Shaanxi Univ. CSAIL Lab, AIoT expertise</span></div></div>
@@ -354,27 +336,26 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 <div class="cf"><span class="cf-i">🏭</span><div><strong>Vertical Integration</strong><span>10+ years, strict QC, fast delivery</span></div></div>
 </div>
 <div class="cap-r">
-<div class="bn"><div class="bnn">235 lm/W</div><div class="bnl">Ultra-high efficacy, 2× fluorescent</div></div>
-<div class="bn"><div class="bnn">93.7%</div><div class="bnl">AI self-learning vs expert accuracy</div></div>
-<div class="bn"><div class="bnn">80-96%</div><div class="bnl">Energy savings vs fluorescent</div></div>
+<div class="bn"><div class="bnn">235<span style="font-size:.55em;font-weight:400">lm/W</span></div><div class="bnl">Ultra-high efficacy, 2× fluorescent</div></div>
+<div class="bn"><div class="bnn">93.7<span style="font-size:.55em;font-weight:400">%</span></div><div class="bnl">AI self-learning vs expert accuracy</div></div>
+<div class="bn"><div class="bnn">80-96<span style="font-size:.55em;font-weight:400">%</span></div><div class="bnl">Energy savings vs fluorescent</div></div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- 04 Products -->
-<section class="sec s-g reveal" id="products">
+<section class="sec reveal" id="products">
 <div class="wrap">
 <div class="sec-num">04</div>
 <span class="tag">Products</span>
-<h2 class="stitle" Complete Smart Lighting Portfolio></h2>
-<p class="ssub" From high bay to ceiling, AI to daylight dimming — one-stop commercial lighting.></p>
+<h2 class="stitle">Complete Smart Lighting Portfolio</h2>
+<p class="ssub">From high bay to ceiling, AI to daylight dimming — one-stop commercial lighting.</p>
 <div class="ptabs">
 <button class="ptab active" data-pt="pt-group">AI-Driven Group Control</button>
 <button class="ptab" data-pt="pt-ai">AI Self-Learning</button>
 <button class="ptab" data-pt="pt-hieff">High-Efficiency LED</button>
 <button class="ptab" data-pt="pt-daylight">Daylight Dimming</button>
-<button class="ptab" data-pt="pt-acc" Smart Accessories></button>
+<button class="ptab" data-pt="pt-acc">Smart Accessories</button>
 </div>
 
 <div class="pp active" id="pt-group"><div class="pg">
@@ -389,7 +370,7 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 </div></div>
 
 <div class="pp" id="pt-ai">
-<div class="sl2"><div class="slt"><h3>AI Zero-Commissioning · Install & Deliver</h3><p>Built-in AI — no manual tuning. Self-learns movement paths, pre-lights predicted routes.</p><ul class="sl-fe"><li><strong>AI+Management</strong> — Zero commissioning, self-learning, predictive lighting</li><li><strong>AI+Safety</strong> — 93%+ accuracy, eliminates human error</li><li><strong>AI+Control</strong> — Auto data collection, big data, on-demand reports</li><li><strong>AI+Carbon</strong> — Sensor-based auto brightness, comfort + max savings</li></ul></div><div class="slb"><div class="si">🧠</div><div class="sn">93.7%</div><div class="sl">AI vs Expert Accuracy</div><p style="margin-top:8px;color:var(--w60);font-size:.76em">Ideal: Parking / Warehouse / Public</p></div></div>
+<div class="sl2"><div class="slt"><h3>AI Zero-Commissioning · Install & Deliver</h3><p>Built-in AI — no manual tuning. Self-learns movement paths, pre-lights predicted routes.</p><ul class="sl-fe"><li><strong>AI+Management</strong> — Zero commissioning, self-learning, predictive lighting</li><li><strong>AI+Safety</strong> — 93%+ accuracy, eliminates human error</li><li><strong>AI+Control</strong> — Auto data collection, big data, on-demand reports</li><li><strong>AI+Carbon</strong> — Sensor-based auto brightness, comfort + max savings</li></ul></div><div class="slb"><div class="si">🧠</div><div class="sn">93.7%</div><div class="sl">AI vs Expert Accuracy</div><p style="margin-top:8px;color:var(--t2);font-size:.76em">Ideal: Parking / Warehouse / Public</p></div></div>
 <div style="margin-top:22px"><div class="pg">
 <div class="pc"><div class="ph"><span class="phi">💡</span><div><h4>AI High Bay</h4><span class="phe">AI工矿灯</span></div></div><div class="pb"><div class="ps"><div class="psi"><strong>Power</strong>100/150/250W</div><div class="psi"><strong>Efficacy</strong>150-190lm/W</div></div><p class="pd">Standby/Trigger/Linked 3-level, auto path prediction.</p><span class="tg">AI Zero-Commission</span><span class="tg">Self-Learning</span></div></div>
 <div class="pc"><div class="ph"><span class="phi">🔦</span><div><h4>AI T8 Tube</h4><span class="phe">AI T8灯管</span></div></div><div class="pb"><div class="ps"><div class="psi"><strong>Power</strong>12/18W</div><div class="psi"><strong>Efficacy</strong>150lm/W</div></div><p class="pd">Presence-lit, absence-dim. Micro-sleep + full-link, zone-isolated.</p><span class="tg">AI Zero-Commission</span><span class="tg">Stepless</span></div></div>
@@ -397,13 +378,13 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 </div>
 
 <div class="pp" id="pt-hieff">
-<div class="he4"><div class="hec"><div class="hi">⚡</div><div class="hn">235 lm/W</div><div class="hl">Ultra-High Efficacy<br>2× Fluorescent</div></div><div class="hec"><div class="hi">💡</div><div class="hn">9W→18W</div><div class="hl">Equivalent Replace<br>53.3lux @ 2.5m</div></div><div class="hec"><div class="hi">📉</div><div class="hn">&lt;2%/yr</div><div class="hl">Low Lumen Decay<br>Fluorescent >5%/yr</div></div><div class="hec"><div class="hi">🕐</div><div class="hn">50,000h</div><div class="hl">Long Lifespan<br>5yr Maintenance-Free</div></div></div>
+<div class="he4"><div class="hec"><div class="hi">⚡</div><div class="hn">235</div><div class="hl">lm/W Ultra-High<br>2× Fluorescent</div></div><div class="hec"><div class="hi">💡</div><div class="hn">9→18</div><div class="hl">W Equivalent<br>53.3lux @ 2.5m</div></div><div class="hec"><div class="hi">📉</div><div class="hn">&lt;2%</div><div class="hl">Decay / Year<br>Fluorescent >5%</div></div><div class="hec"><div class="hi">🕐</div><div class="hn">50k</div><div class="hl">Hours Lifespan<br>5yr Maintenance-Free</div></div></div>
 <div class="hev"><h3>High-Efficacy Specifications</h3><div class="hevs"><div class="hsi"><strong>6W Tube</strong><br>235lm/W · 1000lm</div><div class="hsi"><strong>9W Tube</strong><br>235lm/W · 1600lm</div><div class="hsi"><strong>12W Downlight</strong><br>Cut Φ75 · Ra>95</div><div class="hsi"><strong>24W Downlight</strong><br>Cut Φ95 · Ra>95</div></div><div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap;justify-content:center"><span class="tg tgg">CREE/Citizen LED</span><span class="tg tgg">Isolated Driver ≥93%</span><span class="tg tgg">Aluminum Body</span><span class="tg tgg">Flicker-Free</span><span class="tg tgg">Prism Diffuser</span></div></div>
 </div>
 
 <div class="pp" id="pt-daylight">
 <div class="dlf"><div class="dlc"><div class="di">🌅</div><h4>Sunrise</h4><p>Low daylight → High out<br>Auto compensation</p></div><div class="dlc"><div class="di">☀️</div><h4>Noon</h4><p>Strong light → Low out<br>Max natural light</p></div><div class="dlc"><div class="di">🌇</div><h4>Sunset</h4><p>Low daylight → High out<br>Smooth transition</p></div><div class="dlc"><div class="di">🌧️</div><h4>Rainy</h4><p>Dim outdoor<br>Auto compensation</p></div></div>
-<div style="margin-top:20px;text-align:center"><div style="display:inline-block;background:var(--gl);border-radius:14px;padding:18px 26px;max-width:620px"><h3 style="color:var(--b);font-weight:700;margin-bottom:4px">Daylight Auto-Dimming · True >50% Energy Saving</h3><p style="color:#3a3d44;font-size:.82em">Flux 0-2800Lm · Sensing 180°/6m · Beam 160° · Seamless · Schools, Retail, Offices</p></div></div>
+<div style="margin-top:20px;text-align:center"><div style="display:inline-block;background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.1);border-radius:14px;padding:18px 26px;max-width:620px"><h3 style="font-weight:700;margin-bottom:4px">Daylight Auto-Dimming · True >50% Energy Saving</h3><p style="color:var(--t2);font-size:.82em">Flux 0-2800Lm · Sensing 180°/6m · Beam 160° · Seamless · Schools, Retail, Offices</p></div></div>
 </div>
 
 <div class="pp" id="pt-acc">
@@ -412,12 +393,11 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 </div>
 </section>
 
-<!-- 05 -->
-<section class="sec s-d reveal" id="tech">
+<section class="sec reveal" id="tech">
 <div class="wrap">
 <div class="sec-num">05</div>
 <span class="tag">Core Technology</span>
-<h2 class="stitle" Self-Developed DC System></h2>
+<h2 class="stitle">Self-Developed DC System</h2>
 <p class="ssub">Decentralized Mesh · Hybrid Protocol · Cluster Control · Stepless Dimming · AI Learning</p>
 <div class="tnav">
 <button class="tnb active" data-tp="tp-dc">DC Core</button>
@@ -454,13 +434,12 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 </div>
 </section>
 
-<!-- 06 -->
-<section class="sec s-w reveal" id="solutions">
+<section class="sec reveal" id="solutions">
 <div class="wrap">
 <div class="sec-num">06</div>
 <span class="tag">Solutions</span>
-<h2 class="stitle" Full-Scene Smart Lighting></h2>
-<p class="ssub" From parking to offices, industrial to healthcare — DC System covers all.></p>
+<h2 class="stitle">Full-Scene Smart Lighting</h2>
+<p class="ssub">From parking to offices, industrial to healthcare — DC System covers all.</p>
 <div class="sg">
 <div class="sc"><span class="sci">🚗</span><h3>Smart Parking</h3><p>Radar + AI, presence-lit, zone-isolated.</p><ul><li>70-83% energy saving</li><li>Stepless 10-100% dimming</li><li>Virtual circuit & junction mode</li></ul></div>
 <div class="sc"><span class="sci">🏢</span><h3>Smart Office</h3><p>Lux-adaptive, PIR-linked smart zoning.</p><ul><li>Adaptive illuminance</li><li>Scene-linked switching</li><li>SaaS energy dashboard</li></ul></div>
@@ -472,30 +451,28 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 </div>
 </section>
 
-<!-- About -->
-<section class="sec s-g reveal" id="about">
+<section class="sec reveal" id="about">
 <div class="wrap">
 <span class="tag">About DACHENG</span>
-<h2 class="stitle" Innovative LED Lighting Solution Provider></h2>
-<p class="ssub" Integrated design, manufacturing, marketing & service — 10+ years in lighting.></p>
+<h2 class="stitle">Innovative LED Lighting Solution Provider</h2>
+<p class="ssub">Integrated design, manufacturing, marketing & service — 10+ years in lighting.</p>
 <div class="ab">
 <div class="abt">
-<h3 Smart Lighting · Green Lighting></h3>
-<p DACHENG specializes in LED panels, linear lights, and indoor luminaires. Core technology led by <strong>Ph.D Researcher from Shaanxi University CSAIL Lab</strong>. Based in the <strong>GBA Innovation Base</strong> — a national-level platform.></p>
+<h3>Smart Lighting · Green Lighting</h3>
+<p>DACHENG specializes in LED panels, linear lights, and indoor luminaires. Core technology led by <strong>Ph.D Researcher from Shaanxi University CSAIL Lab</strong>. Based in the <strong>GBA Innovation Base</strong> — a national-level platform.</p>
 <span class="quote">"Technology is not a weapon against nature, but a bridge to restore our relationship."</span>
 <div class="abh"><div class="hl"><div class="hln">10+</div><div class="hll">Years Exp.</div></div><div class="hl"><div class="hln">CSAIL</div><div class="hll">Ph.D AI Lab</div></div><div class="hl"><div class="hln">GBA</div><div class="hll">National Base</div></div><div class="hl"><div class="hln">3+</div><div class="hll">Core Patents</div></div></div>
 </div>
-<div class="abv"><div class="avi">🧬</div><p style="font-weight:600;color:var(--b);font-size:.88em;margin-bottom:8px">AIoT Active Intelligent Lighting Architecture</p><p>mmWave · IR · Lux · Edge Computing ↓ Deep Learning · Energy Optimization · Spatial Prediction ↓ <strong style="color:var(--g)">Active Smart Lighting</strong></p></div>
+<div class="abv"><div class="avi">🧬</div><p style="font-weight:600;font-size:.88em;margin-bottom:8px">AIoT Active Intelligent Lighting Architecture</p><p>mmWave · IR · Lux · Edge Computing ↓ Deep Learning · Energy Optimization · Spatial Prediction ↓ <strong style="color:var(--accent)">Active Smart Lighting</strong></p></div>
 </div>
 </div>
 </section>
 
-<!-- Contact -->
-<section class="sec s-d reveal" id="contact">
+<section class="sec reveal" id="contact">
 <div class="wrap">
 <span class="tag">Contact</span>
-<h2 class="stitle" Start Your Smart Lighting Journey></h2>
-<p class="ssub" Tell us your needs — customized solution within 24 hours.></p>
+<h2 class="stitle">Start Your Smart Lighting Journey</h2>
+<p class="ssub">Tell us your needs — customized solution within 24 hours.</p>
 <div class="ctw">
 <div class="cti"><h3>Get In Touch</h3><p>Real estate developer, factory manager, or channel partner — DACHENG delivers tailored smart lighting.</p><div class="cr"><div class="cri">📧</div><span>info@daching.top</span></div><div class="cr"><div class="cri">📍</div><span>GBA Innovation Base, Tianhe<br>Guangzhou, China</span></div><div class="cr"><div class="cri">🕐</div><span>Mon-Sat 8:00-18:00 (GMT+8)</span></div></div>
 <div class="ctf"><h3>Quick Inquiry</h3><form><div class="fg"><label>Name *</label><input type="text" placeholder="Your name" required></div><div class="fg"><label>Email *</label><input type="email" placeholder="name@company.com" required></div><div class="fg"><label>Company</label><input type="text" placeholder="Company name"></div><div class="fg"><label>Interest</label><select><option>— Select —</option><option>Smart Parking</option><option>Smart Office</option><option>Industrial</option><option>Retail</option><option>Healthcare/Education</option><option>Hospitality</option><option>AI Self-Learning</option><option>High-Efficiency LED</option><option>Daylight Dimming</option><option>DC System</option></select></div><div class="fg"><label>Message</label><textarea placeholder="Describe your project…"></textarea></div><button type="submit" class="fb">Send Inquiry →</button></form></div>
@@ -508,28 +485,13 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,
 <script>
 const nb=document.getElementById('nb');
 addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>50));
-const tg=document.getElementById('nbtg'),nl=document.getElementById('nbl');
-tg.onclick=()=>{tg.classList.toggle('active');nl.classList.toggle('active')};
-nl.querySelectorAll('a').forEach(a=>a.onclick=()=>{tg.classList.remove('active');nl.classList.remove('active')});
-
-"]`).classList.add('active');
-  localStorage.setItem('daching-lang',lang);
-}
-
-function switchProdTab(id){
-  document.querySelectorAll('.ptab').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.pp').forEach(p=>p.classList.remove('active'));
-  document.querySelector(`[data-pt="${id}"]`).classList.add('active');
-  document.getElementById(id).classList.add('active');
-  document.getElementById('products').scrollIntoView({behavior:'smooth'});
-}
-
+const tg=document.getElementById('nbtg');
+tg.onclick=()=>tg.classList.toggle('active');
+function switchProdTab(id){document.querySelectorAll('.ptab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.pp').forEach(p=>p.classList.remove('active'));document.querySelector(`[data-pt="${id}"]`).classList.add('active');document.getElementById(id).classList.add('active');document.getElementById('products').scrollIntoView({behavior:'smooth'})}
 document.querySelectorAll('.reveal').forEach(e=>new IntersectionObserver(o=>o.forEach(o=>{if(o.isIntersecting){o.target.classList.add('visible')}}),{threshold:.1}).observe(e));
 document.querySelector('.hero.reveal').classList.add('visible');
 document.querySelectorAll('.tnb').forEach(b=>b.onclick=function(){document.querySelectorAll('.tnb').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));this.classList.add('active');document.getElementById(this.dataset.tp).classList.add('active')});
 document.querySelectorAll('.ptab').forEach(t=>t.onclick=function(){document.querySelectorAll('.ptab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.pp').forEach(p=>p.classList.remove('active'));this.classList.add('active');document.getElementById(this.dataset.pt).classList.add('active')});
-document.querySelector('.ptab[data-pt="pt-acc"]')&&(document.querySelector('.ptab[data-pt="pt-acc"]').textContent='Smart Accessories');
-
 </script>
 </body>
 </html>
