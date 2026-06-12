@@ -27,9 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 .nb-links a:hover{color:var(--gold-light)}
 .nb-cta{background:var(--g)!important;color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:600!important}
 .nb-cta:hover{background:var(--gd)!important;color:#fff!important}
-.lang-switch{display:flex;border:1px solid rgba(255,255,255,.2);border-radius:6px;overflow:hidden}
-.lang-switch button{padding:5px 10px;border:none;cursor:pointer;font-size:.78em;font-weight:500;background:transparent;color:var(--w40);transition:all .2s}
-.lang-switch button.active{background:var(--g);color:#fff}
+
 .nb-tg{display:none;background:none;border:none;cursor:pointer;padding:6px}
 .nb-tg span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;transition:.28s;border-radius:2px}
 @media(max-width:900px){
@@ -263,12 +261,6 @@ footer .flm img{height:25px;margin:0 auto}
 footer p{font-size:.76em;margin-bottom:1px}
 footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);font-size:.7em;color:rgba(255,255,255,.3)}
 
-/* Bilingual data attributes */
-[data-en]{display:block}
-[data-zh]{display:none}
-html[lang="zh-CN"] [data-en]{display:none}
-html[lang="zh-CN"] [data-zh]{display:block}
-
 .reveal{opacity:0;transform:translateY(24px);transition:all .55s cubic-bezier(.22,.61,.36,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
@@ -283,10 +275,7 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <ul class="nb-links" id="nbl">
 <li><a href="#home">Home</a></li><li><a href="#products">Products</a></li><li><a href="#tech">Technology</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#about">About</a></li><li><a href="#contact" class="nb-cta">Contact</a></li>
 </ul>
-<div class="lang-switch">
-<button class="active" onclick="switchLang('en')">EN</button>
-<button onclick="switchLang('zh-CN')">中文</button>
-</div>
+
 <button class="nb-tg" id="nbtg"><span></span><span></span><span></span></button>
 </div>
 </nav>
@@ -295,16 +284,13 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <section class="hero reveal" id="home">
 <div class="hero-c">
 <div class="hero-logo"><img src="logo-white.png" alt="DACHENG"></div>
-<div class="hero-badge" data-en="IoT + Radar Sensing · AIoT Smart Lighting" data-zh="物联网 + 雷达无线传感 · AIoT 智慧照明"></div>
-<h1>
-<span data-en="Smart Lighting <span class='accent'>Redefines What Light Can Do</span>">Smart Lighting <span class="accent">Redefines What Light Can Do</span></span>
-<span data-zh="智慧照明 <span class='accent'>重新定义光的可能</span>">智慧照明 <span class="accent">重新定义光的可能</span></span>
-</h1>
-<p data-en="Self-developed DC System — AIoT-powered active intelligent lighting. Luminaires perceive scenes and auto-match professional lighting." data-zh="自研 DC 系统，基于 AIoT 打造主动智能照明。灯具自主感知场景，自动匹配专业灯光——所想、所见、所感。"></p>
+<div class="hero-badge">IoT + Radar Sensing · AIoT Smart Lighting</div>
+<h1>Smart Lighting <span class="accent">Redefines What Light Can Do</span></h1>
+<p Self-developed DC System — AIoT-powered active intelligent lighting. Luminaires perceive scenes and auto-match professional lighting.></p>
 <div class="hero-btns">
-<a href="#products" class="btn btn-p" data-en="Explore Products →" data-zh="浏览产品 →"></a>
-<a href="#tech" class="btn btn-o" data-en="Technology" data-zh="核心技术"></a>
-<a href="#contact" class="btn btn-o" data-en="Request Demo" data-zh="预约演示"></a>
+<a href="#products" class="btn btn-p" Explore Products →></a>
+<a href="#tech" class="btn btn-o" Technology></a>
+<a href="#contact" class="btn btn-o" Request Demo></a>
 </div>
 <div class="hero-feats">
 <div class="hero-feat"><span>📡</span> 5.8GHz Radar</div>
@@ -326,13 +312,13 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <section class="sec s-w reveal">
 <div class="wrap">
 <div class="sec-num">01</div>
-<span class="tag" data-en="What We Do" data-zh="我们做什么"></span>
-<h2 class="stitle" data-en="AIoT Smart Lighting — One-Stop Solution" data-zh="AIoT 智慧照明 · 一站式解决方案"></h2>
-<p class="ssub" data-en="From smart hardware to cloud platform, from single lamp to cluster — the DC System builds a complete smart lighting closed loop." data-zh="从智能硬件到云端平台，从单灯到集群——DC 系统构建完整的智慧照明闭环。"></p>
+<span class="tag" What We Do></span>
+<h2 class="stitle" AIoT Smart Lighting — One-Stop Solution></h2>
+<p class="ssub" From smart hardware to cloud platform, from single lamp to cluster — the DC System builds a complete smart lighting closed loop.></p>
 <div class="p3">
-<div class="p3c"><span class="p3i">💡</span><h3 data-en="Smart Hardware" data-zh="智能硬件"></h3><p data-en="Full-range luminaires: High Bay, T8 Tube, Tri-Proof, Panel, Linear, Downlight, Ceiling. Built-in radar/IR sensors, plug & play." data-zh="全品类智能灯具：工矿灯、T8灯管、三防支架、面板灯、线条灯、筒射灯、吸顶灯。内置雷达/红外传感器，即装即用。"></p></div>
-<div class="p3c"><span class="p3i">🧠</span><h3 data-en="AIoT Platform" data-zh="AIoT 平台"></h3><p data-en="Self-developed DC System: decentralized Mesh, hybrid protocol, AI self-learning. SaaS cloud with MQTT standard interface." data-zh="自研 DC 系统：去中心化 Mesh 组网、混合协议融合、AI 自学习算法。SaaS 云平台，MQTT 标准接口。"></p></div>
-<div class="p3c"><span class="p3i">⚡</span><h3 data-en="Energy Solution" data-zh="节能方案"></h3><p data-en="On-demand lighting: presence-lit, absence-dim. Stepless 10-100% dimming. 80-96% vs fluorescent, +60-75% vs radar lamps." data-zh="按需照明：人来灯亮、人去灯暗。无极调光 10%-100%。荧光灯节能 80-96%，雷达感应灯再节能 60-75%。"></p></div>
+<div class="p3c"><span class="p3i">💡</span><h3 Smart Hardware></h3><p Full-range luminaires: High Bay, T8 Tube, Tri-Proof, Panel, Linear, Downlight, Ceiling. Built-in radar/IR sensors, plug & play.></p></div>
+<div class="p3c"><span class="p3i">🧠</span><h3 AIoT Platform></h3><p Self-developed DC System: decentralized Mesh, hybrid protocol, AI self-learning. SaaS cloud with MQTT standard interface.></p></div>
+<div class="p3c"><span class="p3i">⚡</span><h3 Energy Solution></h3><p On-demand lighting: presence-lit, absence-dim. Stepless 10-100% dimming. 80-96% vs fluorescent, +60-75% vs radar lamps.></p></div>
 </div>
 </div>
 </section>
@@ -341,14 +327,14 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <section class="sec s-g reveal">
 <div class="wrap">
 <div class="sec-num">02</div>
-<span class="tag" data-en="Product Lines" data-zh="产品线"></span>
-<h2 class="stitle" data-en="Four Major Product Series" data-zh="四大产品系列"></h2>
-<p class="ssub" data-en="Complete commercial lighting coverage — from AI-driven group control to self-learning, all in one stop." data-zh="覆盖商业照明全场景，从智能群控到 AI 自学习，一站式配齐。"></p>
+<span class="tag" Product Lines></span>
+<h2 class="stitle" Four Major Product Series></h2>
+<p class="ssub" Complete commercial lighting coverage — from AI-driven group control to self-learning, all in one stop.></p>
 <div class="pa4">
-<a href="#pt-group" class="pa4c" onclick="switchProdTab('pt-group')"><span class="pai">🎛️</span><h4 data-en="AI-Driven Group Control" data-zh="智能群控系列"></h4><p data-en="Industrial · T8 · Tri-Proof · Panel · Linear · Downlight · Ceiling" data-zh="工矿灯 · T8灯管 · 三防支架 · 面板灯 · 线条灯 · 筒射灯 · 吸顶灯"></p><span class="paar" data-en="Learn More →" data-zh="查看详情 →"></span></a>
-<a href="#pt-ai" class="pa4c" onclick="switchProdTab('pt-ai')"><span class="pai">🤖</span><h4 data-en="AI Self-Learning Lamps" data-zh="AI 自学习灯具"></h4><p data-en="Zero commissioning · Self-learns paths · Predictive lighting · 93.7% accuracy" data-zh="免调试安装即交付 · 自学习路径 · 提前预测亮灯 · 相似度 93.7%"></p><span class="paar" data-en="Learn More →" data-zh="查看详情 →"></span></a>
-<a href="#pt-hieff" class="pa4c" onclick="switchProdTab('pt-hieff')"><span class="pai">⚡</span><h4 data-en="High-Efficiency LED" data-zh="高光效节能灯具"></h4><p data-en="235lm/W · <2% decay/yr · 50,000h · 5-year maintenance-free" data-zh="235lm/W 超高光效 · 年光衰 <2% · 寿命 50,000h · 5 年免维护"></p><span class="paar" data-en="Learn More →" data-zh="查看详情 →"></span></a>
-<a href="#pt-daylight" class="pa4c" onclick="switchProdTab('pt-daylight')"><span class="pai">☀️</span><h4 data-en="Daylight Dimming" data-zh="日光感应调光"></h4><p data-en="Auto-adjusts to natural light · Seamless dimming · True >50% savings" data-zh="随自然光自动调节 · 无断差增光减光 · 真正省电 >50%"></p><span class="paar" data-en="Learn More →" data-zh="查看详情 →"></span></a>
+<a href="#pt-group" class="pa4c" onclick="switchProdTab('pt-group')"><span class="pai">🎛️</span><h4 AI-Driven Group Control></h4><p Industrial · T8 · Tri-Proof · Panel · Linear · Downlight · Ceiling></p><span class="paar" Learn More →></span></a>
+<a href="#pt-ai" class="pa4c" onclick="switchProdTab('pt-ai')"><span class="pai">🤖</span><h4 AI Self-Learning Lamps></h4><p Zero commissioning · Self-learns paths · Predictive lighting · 93.7% accuracy></p><span class="paar" Learn More →></span></a>
+<a href="#pt-hieff" class="pa4c" onclick="switchProdTab('pt-hieff')"><span class="pai">⚡</span><h4 High-Efficiency LED></h4><p 235lm/W · <2% decay/yr · 50,000h · 5-year maintenance-free></p><span class="paar" Learn More →></span></a>
+<a href="#pt-daylight" class="pa4c" onclick="switchProdTab('pt-daylight')"><span class="pai">☀️</span><h4 Daylight Dimming></h4><p Auto-adjusts to natural light · Seamless dimming · True >50% savings></p><span class="paar" Learn More →></span></a>
 </div>
 </div>
 </section>
@@ -358,8 +344,8 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <div class="wrap">
 <div class="sec-num">03</div>
 <span class="tag">Why DACHENG</span>
-<h2 class="stitle" data-en="Technology-Driven · Data-Proven" data-zh="技术驱动 · 数据说话"></h2>
-<p class="ssub" data-en="Ph.D research team + self-developed DC System + full-stack proprietary technology." data-zh="博士后团队 + 自研 DC 系统 + 全链路自主可控。"></p>
+<h2 class="stitle" Technology-Driven · Data-Proven></h2>
+<p class="ssub" Ph.D research team + self-developed DC System + full-stack proprietary technology.></p>
 <div class="cap">
 <div class="cap-l">
 <div class="cf"><span class="cf-i">🎓</span><div><strong>Ph.D Research Team</strong><span>Shaanxi Univ. CSAIL Lab, AIoT expertise</span></div></div>
@@ -381,14 +367,14 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <div class="wrap">
 <div class="sec-num">04</div>
 <span class="tag">Products</span>
-<h2 class="stitle" data-en="Complete Smart Lighting Portfolio" data-zh="全品类智慧照明产品矩阵"></h2>
-<p class="ssub" data-en="From high bay to ceiling, AI to daylight dimming — one-stop commercial lighting." data-zh="从工矿灯到吸顶灯，从 AI 自学习到日光感应——一站式覆盖商业照明全场景。"></p>
+<h2 class="stitle" Complete Smart Lighting Portfolio></h2>
+<p class="ssub" From high bay to ceiling, AI to daylight dimming — one-stop commercial lighting.></p>
 <div class="ptabs">
 <button class="ptab active" data-pt="pt-group">AI-Driven Group Control</button>
 <button class="ptab" data-pt="pt-ai">AI Self-Learning</button>
 <button class="ptab" data-pt="pt-hieff">High-Efficiency LED</button>
 <button class="ptab" data-pt="pt-daylight">Daylight Dimming</button>
-<button class="ptab" data-pt="pt-acc" data-en="Smart Accessories" data-zh="智能配件"></button>
+<button class="ptab" data-pt="pt-acc" Smart Accessories></button>
 </div>
 
 <div class="pp active" id="pt-group"><div class="pg">
@@ -431,7 +417,7 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <div class="wrap">
 <div class="sec-num">05</div>
 <span class="tag">Core Technology</span>
-<h2 class="stitle" data-en="Self-Developed DC System" data-zh="自研 DC 系统 · 从感知到决策"></h2>
+<h2 class="stitle" Self-Developed DC System></h2>
 <p class="ssub">Decentralized Mesh · Hybrid Protocol · Cluster Control · Stepless Dimming · AI Learning</p>
 <div class="tnav">
 <button class="tnb active" data-tp="tp-dc">DC Core</button>
@@ -473,8 +459,8 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <div class="wrap">
 <div class="sec-num">06</div>
 <span class="tag">Solutions</span>
-<h2 class="stitle" data-en="Full-Scene Smart Lighting" data-zh="全场景智慧照明"></h2>
-<p class="ssub" data-en="From parking to offices, industrial to healthcare — DC System covers all." data-zh="从地下车库到商务办公，从工业厂房到教育医疗——DC 系统无处不在。"></p>
+<h2 class="stitle" Full-Scene Smart Lighting></h2>
+<p class="ssub" From parking to offices, industrial to healthcare — DC System covers all.></p>
 <div class="sg">
 <div class="sc"><span class="sci">🚗</span><h3>Smart Parking</h3><p>Radar + AI, presence-lit, zone-isolated.</p><ul><li>70-83% energy saving</li><li>Stepless 10-100% dimming</li><li>Virtual circuit & junction mode</li></ul></div>
 <div class="sc"><span class="sci">🏢</span><h3>Smart Office</h3><p>Lux-adaptive, PIR-linked smart zoning.</p><ul><li>Adaptive illuminance</li><li>Scene-linked switching</li><li>SaaS energy dashboard</li></ul></div>
@@ -490,12 +476,12 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <section class="sec s-g reveal" id="about">
 <div class="wrap">
 <span class="tag">About DACHENG</span>
-<h2 class="stitle" data-en="Innovative LED Lighting Solution Provider" data-zh="创新的 LED 照明解决方案提供商"></h2>
-<p class="ssub" data-en="Integrated design, manufacturing, marketing & service — 10+ years in lighting." data-zh="集设计、制造、营销和服务于一体，10 年+ 照明行业经验。"></p>
+<h2 class="stitle" Innovative LED Lighting Solution Provider></h2>
+<p class="ssub" Integrated design, manufacturing, marketing & service — 10+ years in lighting.></p>
 <div class="ab">
 <div class="abt">
-<h3 data-en="Smart Lighting · Green Lighting" data-zh="智能的照明 · 环保的照明"></h3>
-<p data-en="DACHENG specializes in LED panels, linear lights, and indoor luminaires. Core technology led by <strong>Ph.D Researcher from Shaanxi University CSAIL Lab</strong>. Based in the <strong>GBA Innovation Base</strong> — a national-level platform." data-zh="DACHENG 致力于 LED 面板、线性灯和室内灯具。原创技术由<strong>陕西科技大学 CSAIL 博士后研究员</strong>领军，扎根于<strong>粤港澳大湾区创新创业孵化基地</strong>——国家级创新平台。"></p>
+<h3 Smart Lighting · Green Lighting></h3>
+<p DACHENG specializes in LED panels, linear lights, and indoor luminaires. Core technology led by <strong>Ph.D Researcher from Shaanxi University CSAIL Lab</strong>. Based in the <strong>GBA Innovation Base</strong> — a national-level platform.></p>
 <span class="quote">"Technology is not a weapon against nature, but a bridge to restore our relationship."</span>
 <div class="abh"><div class="hl"><div class="hln">10+</div><div class="hll">Years Exp.</div></div><div class="hl"><div class="hln">CSAIL</div><div class="hll">Ph.D AI Lab</div></div><div class="hl"><div class="hln">GBA</div><div class="hll">National Base</div></div><div class="hl"><div class="hln">3+</div><div class="hll">Core Patents</div></div></div>
 </div>
@@ -508,8 +494,8 @@ html[lang="zh-CN"] [data-zh]{display:block}
 <section class="sec s-d reveal" id="contact">
 <div class="wrap">
 <span class="tag">Contact</span>
-<h2 class="stitle" data-en="Start Your Smart Lighting Journey" data-zh="开启智慧照明之旅"></h2>
-<p class="ssub" data-en="Tell us your needs — customized solution within 24 hours." data-zh="告诉我们您的需求，24 小时内提供定制化方案。"></p>
+<h2 class="stitle" Start Your Smart Lighting Journey></h2>
+<p class="ssub" Tell us your needs — customized solution within 24 hours.></p>
 <div class="ctw">
 <div class="cti"><h3>Get In Touch</h3><p>Real estate developer, factory manager, or channel partner — DACHENG delivers tailored smart lighting.</p><div class="cr"><div class="cri">📧</div><span>info@daching.top</span></div><div class="cr"><div class="cri">📍</div><span>GBA Innovation Base, Tianhe<br>Guangzhou, China</span></div><div class="cr"><div class="cri">🕐</div><span>Mon-Sat 8:00-18:00 (GMT+8)</span></div></div>
 <div class="ctf"><h3>Quick Inquiry</h3><form><div class="fg"><label>Name *</label><input type="text" placeholder="Your name" required></div><div class="fg"><label>Email *</label><input type="email" placeholder="name@company.com" required></div><div class="fg"><label>Company</label><input type="text" placeholder="Company name"></div><div class="fg"><label>Interest</label><select><option>— Select —</option><option>Smart Parking</option><option>Smart Office</option><option>Industrial</option><option>Retail</option><option>Healthcare/Education</option><option>Hospitality</option><option>AI Self-Learning</option><option>High-Efficiency LED</option><option>Daylight Dimming</option><option>DC System</option></select></div><div class="fg"><label>Message</label><textarea placeholder="Describe your project…"></textarea></div><button type="submit" class="fb">Send Inquiry →</button></form></div>
@@ -526,10 +512,7 @@ const tg=document.getElementById('nbtg'),nl=document.getElementById('nbl');
 tg.onclick=()=>{tg.classList.toggle('active');nl.classList.toggle('active')};
 nl.querySelectorAll('a').forEach(a=>a.onclick=()=>{tg.classList.remove('active');nl.classList.remove('active')});
 
-function switchLang(lang){
-  document.documentElement.lang=lang;
-  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
+"]`).classList.add('active');
   localStorage.setItem('daching-lang',lang);
 }
 
@@ -547,9 +530,6 @@ document.querySelectorAll('.tnb').forEach(b=>b.onclick=function(){document.query
 document.querySelectorAll('.ptab').forEach(t=>t.onclick=function(){document.querySelectorAll('.ptab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.pp').forEach(p=>p.classList.remove('active'));this.classList.add('active');document.getElementById(this.dataset.pt).classList.add('active')});
 document.querySelector('.ptab[data-pt="pt-acc"]')&&(document.querySelector('.ptab[data-pt="pt-acc"]').textContent='Smart Accessories');
 
-// Restore lang
-const saved=localStorage.getItem('daching-lang');
-if(saved&&saved!=='en')switchLang(saved);
 </script>
 </body>
 </html>
