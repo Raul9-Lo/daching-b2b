@@ -23,7 +23,7 @@
     .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 36px;display:flex;justify-content:space-between;align-items:center;transition:all .3s;background:transparent}
     .navbar.scrolled{background:rgba(7,19,28,.97);backdrop-filter:blur(18px);padding:10px 36px;box-shadow:0 1px 0 rgba(255,255,255,.06),0 8px 32px rgba(0,0,0,.4)}
     .nav-logo{text-decoration:none;display:flex;align-items:center}
-    .nav-logo img{height:30px;width:auto;filter:brightness(0)invert(1)}
+    .nav-logo img{height:30px;width:auto}
     .nav-links{display:flex;list-style:none;gap:18px;align-items:center}
     .nav-links a{color:var(--w90);text-decoration:none;font-size:.86em;font-weight:500;transition:color .2s;white-space:nowrap}
     .nav-links a:hover{color:var(--accent)}
@@ -47,7 +47,7 @@
     .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(14,165,196,.2),transparent)}
     .hero-content{position:relative;z-index:2;max-width:800px}
     .hero-logo-wrap{display:inline-block;background:rgba(14,165,196,.08);border:1px solid rgba(14,165,196,.18);border-radius:18px;padding:22px 40px;margin-bottom:40px;backdrop-filter:blur(12px);animation:fadeUp .6s ease}
-    .hero-logo-wrap img{height:46px;width:auto;filter:brightness(0)invert(1)}
+    .hero-logo-wrap img{height:46px;width:auto}
     .hero-badge{display:inline-block;padding:7px 22px;border:1px solid rgba(14,165,196,.35);border-radius:50px;font-size:.84em;color:var(--accent);margin-bottom:24px;animation:fadeUp .6s .06s ease both}
     .hero h1{font-size:clamp(2em,5vw,3.2em);font-weight:800;line-height:1.18;margin-bottom:22px;letter-spacing:-.3px;animation:fadeUp .6s .12s ease both}
     .hero h1 span{color:var(--accent)}
@@ -267,7 +267,7 @@
     /* ===== FOOTER ===== */
     footer{background:#050e16;color:var(--w60);padding:42px 20px 22px;text-align:center}
     footer .flogo{margin-bottom:10px;display:inline-block}
-    footer .flogo img{height:30px;width:auto;margin:0 auto;filter:brightness(0)invert(1)}
+    footer .flogo img{height:30px;width:auto;margin:0 auto}
     footer p{font-size:.82em;margin-bottom:2px}
     footer .fbot{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.05);font-size:.75em;color:rgba(255,255,255,.33)}
 
@@ -287,7 +287,7 @@
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
-  <a href="#" class="nav-logo"><img src="logo.png" alt="大晟智能 DACHENG"></a>
+  <a href="#" class="nav-logo"><img src="logo-white.png" alt="大晟智能 DACHENG"></a>
   <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home">首页</a></li>
@@ -302,7 +302,7 @@
 <!-- ==================== HERO ==================== -->
 <section class="hero reveal" id="home">
   <div class="hero-content">
-    <div class="hero-logo-wrap"><img src="logo.png" alt="大晟智能 DACHENG"></div>
+    <div class="hero-logo-wrap"><img src="logo-white.png" alt="大晟智能 DACHENG"></div>
     <div class="hero-badge">🤖 物联网 + 雷达无线传感 | AIoT 智慧照明</div>
     <h1>智慧照明 <span>重新定义光的可能</span></h1>
     <p>自研 DC 系统，基于 AIoT 打造主动智能照明。所想、所见、所感——让每一盏灯都拥有大脑。</p>
@@ -566,7 +566,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer><div class="flogo"><img src="logo.png" alt="大晟智能 DACHENG"></div><p>AIoT 智慧照明解决方案提供商</p><p>info@daching.top &nbsp;|&nbsp; 粤港澳大湾区（广东）创新创业孵化基地 &nbsp;|&nbsp; www.daching.top</p><div class="fbot">&copy; 2026 大晟（广州）智能设备有限公司. All rights reserved.</div></footer>
+<footer><div class="flogo"><img src="logo-white.png" alt="大晟智能 DACHENG"></div><p>AIoT 智慧照明解决方案提供商</p><p>info@daching.top &nbsp;|&nbsp; 粤港澳大湾区（广东）创新创业孵化基地 &nbsp;|&nbsp; www.daching.top</p><div class="fbot">&copy; 2026 大晟（广州）智能设备有限公司. All rights reserved.</div></footer>
 
 <script>
 const nb=document.getElementById('navbar');
