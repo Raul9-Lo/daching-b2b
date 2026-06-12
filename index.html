@@ -85,7 +85,7 @@
     /* ===== HOME: 我们做什么 ===== */
     .h-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
     @media(max-width:768px){.h-pillars{grid-template-columns:1fr}}
-    .pillar{background:#fff;border-radius:16px;padding:32px 24px;text-align:center;border:1px solid #edf0f2;transition:all .3s;box-shadow:0 1px 8px rgba(0,0,0,.02)}
+    .pillar{background:#fff;border-radius:16px;padding:32px 24px;text-align:center;border:1px solid #edf0f2;transition:all .3s;box-shadow:0 1px 8px rgba(0,0,0,.02);display:flex;flex-direction:column;align-items:center}
     .pillar:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(14,165,196,.08);border-color:rgba(14,165,196,.15)}
     .pillar .pi-icon{font-size:2.6em;margin-bottom:14px;display:block}
     .pillar h3{font-size:1.1em;color:var(--dark);font-weight:700;margin-bottom:8px}
@@ -95,7 +95,7 @@
     .h-prods{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
     @media(max-width:900px){.h-prods{grid-template-columns:1fr 1fr}}
     @media(max-width:480px){.h-prods{grid-template-columns:1fr}}
-    .h-prod{background:#fff;border-radius:14px;padding:26px 20px;text-align:center;border:1px solid #edf0f2;transition:all .3s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+    .h-prod{background:#fff;border-radius:14px;padding:26px 20px;text-align:center;border:1px solid #edf0f2;transition:all .3s;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;align-items:center;min-height:170px}
     .h-prod:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(14,165,196,.1);border-color:var(--accent)}
     .h-prod .hp-icon{font-size:2.4em;margin-bottom:12px;display:block}
     .h-prod h4{font-size:.98em;color:var(--dark);font-weight:700;margin-bottom:6px}
@@ -228,7 +228,7 @@
 
     /* ===== Accessories ===== */
     .acc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
-    .acc-card{background:#fff;border-radius:12px;padding:20px 14px;text-align:center;box-shadow:0 1px 8px rgba(0,0,0,.015);border:1px solid rgba(0,0,0,.035);transition:all .28s}
+    .acc-card{background:#fff;border-radius:12px;padding:20px 14px;text-align:center;box-shadow:0 1px 8px rgba(0,0,0,.015);border:1px solid rgba(0,0,0,.035);transition:all .28s;display:flex;flex-direction:column;align-items:center;min-height:130px}
     .acc-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(14,165,196,.05);border-color:rgba(14,165,196,.1)}
     .acc-i{font-size:1.8em;margin-bottom:8px}
     .acc-card h4{font-size:.88em;color:var(--dark);font-weight:700;margin-bottom:5px}
