@@ -20,7 +20,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 /* Navbar - Logo left, Nav center */
 .nb{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(7,19,28,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nb-logo{display:flex;align-items:center;text-decoration:none}
-.nb-logo img{height:24px}
+.nb-logo img{height:24px;filter:brightness(0)invert(1)}
 .nb-nav{display:flex;list-style:none;gap:28px;position:absolute;left:50%;transform:translateX(-50%)}
 .nb-nav a{color:var(--t2);text-decoration:none;font-size:.82em;font-weight:500;transition:color .2s;letter-spacing:.3px}
 .nb-nav a:hover{color:#fff}
@@ -39,7 +39,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(14,165,196,.2),transparent)}
 .hero-c{position:relative;z-index:2;max-width:840px}
 .hero-logo{display:inline-block;background:rgba(14,165,196,.06);border:1px solid rgba(14,165,196,.12);border-radius:14px;padding:18px 36px;margin-bottom:36px;backdrop-filter:blur(12px);animation:fu .6s ease}
-.hero-logo img{height:48px}
+.hero-logo img{height:48px;filter:brightness(0)invert(1)}
 .hero-badge{display:inline-block;padding:5px 18px;border:1px solid rgba(14,165,196,.25);border-radius:50px;font-size:.78em;color:var(--accent);margin-bottom:28px;animation:fu .6s .06s ease both;letter-spacing:.6px}
 .hero h1{font-size:clamp(2em,4.5vw,2.8em);font-weight:800;line-height:1.14;margin-bottom:16px;letter-spacing:-.4px;animation:fu .6s .12s ease both}
 .hero h1 .accent{color:var(--accent)}
@@ -243,7 +243,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 
 footer{background:#050e16;color:var(--t2);padding:36px 20px 18px;text-align:center;border-top:1px solid var(--border)}
 footer .flm{margin-bottom:8px}
-footer .flm img{height:25px;margin:0 auto}
+footer .flm img{height:25px;margin:0 auto;filter:brightness(0)invert(1)}
 footer p{font-size:.76em;margin-bottom:1px}
 footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid var(--border);font-size:.7em;color:var(--t3)}
 
@@ -256,7 +256,7 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)
 <body>
 
 <nav class="nb" id="nb">
-<a href="#" class="nb-logo"><img src="logo-white.png" alt="DACHENG"></a>
+<a href="#" class="nb-logo"><img src="logo.png" alt="DACHENG"></a>
 <ul class="nb-nav">
 <li><a href="#home">Home</a></li><li><a href="#products">Products</a></li><li><a href="#tech">Technology</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#about">About</a></li>
 </ul>
@@ -268,7 +268,7 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)
 
 <section class="hero reveal" id="home">
 <div class="hero-c">
-<div class="hero-logo"><img src="logo-white.png" alt="DACHENG"></div>
+<div class="hero-logo"><img src="logo.png" alt="DACHENG"></div>
 <div class="hero-badge">IoT + Radar Sensing · AIoT Smart Lighting</div>
 <h1>Smart Lighting <span class="accent">Redefines</span><br>What Light Can Do</h1>
 <p>Self-developed DC System — AIoT-powered active intelligent lighting. Luminaires perceive scenes and auto-match professional lighting.</p>
@@ -480,7 +480,7 @@ footer .fbot{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)
 </div>
 </section>
 
-<footer><div class="flm"><img src="logo-white.png" alt="DACHENG"></div><p>AIoT Smart Lighting Solution Provider</p><p>info@daching.top &nbsp;|&nbsp; GBA Innovation Base, Guangzhou &nbsp;|&nbsp; www.daching.top</p><div class="fbot">&copy; 2026 DACHENG (Guangzhou) Intelligent Equipment Co., Ltd.</div></footer>
+<footer><div class="flm"><img src="logo.png" alt="DACHENG"></div><p>AIoT Smart Lighting Solution Provider</p><p>info@daching.top &nbsp;|&nbsp; GBA Innovation Base, Guangzhou &nbsp;|&nbsp; www.daching.top</p><div class="fbot">&copy; 2026 DACHENG (Guangzhou) Intelligent Equipment Co., Ltd.</div></footer>
 
 <script>
 const nb=document.getElementById('nb');
